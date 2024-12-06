@@ -37,9 +37,28 @@ private:
         x->right = y;
         y->left = T;
         
-        
+        //Обновляем высоты 
+        y->height = 1 + max(getHeight(y->left), getHeight(y->right));
+        x->height = 1 + max(getHeight(x->left), getHeight(x->right));
+
+        return x; //Возвращаем новый корень         
     }
     
+    //Левый поворт вокруг узла х 
+    Node* rotateLeft(Node* x) {
+        Node* y = x->right; //Новый корень 
+        Node* T = y->left; //Сохранение поддерева у 
+
+       //Выполняем вращение
+       y->left = x;
+       x->right = T;
+
+       //Обновляем высоты 
+       x->height = 1 + max(getHeight(x->left), getHeight(x->right));
+       y->height = 1 + max(getHeight(y->left), getHeight(y->right));
+
+       return y; //Возвращаем новый корень 
+    }
 };
 
 
